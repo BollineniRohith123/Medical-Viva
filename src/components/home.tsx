@@ -1,8 +1,5 @@
 import React from "react";
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
 import FloatingNav from "./ui/floating-nav";
-import ScrollProgress from "./ui/scroll-progress";
 import { Toaster } from "./ui/toaster";
 import { useToast } from "./ui/use-toast";
 import HeroSection from "./landing/HeroSection";
@@ -15,21 +12,23 @@ interface HomeProps {
   onCtaClick?: () => void;
 }
 
-const Home = ({ onCtaClick = () => console.log("CTA clicked") }: HomeProps) => {
+const Home: React.FC<HomeProps> = ({ 
+  onCtaClick = () => console.log("CTA clicked") 
+}) => {
+  const { toast } = useToast();
+
   return (
-    <div className="min-h-screen bg-white pt-16">
-      <ScrollProgress />
-      <Header />
-      <Toaster />
+    <div className="min-h-screen bg-white">
       <FloatingNav />
-      <main>
+      <Toaster />
+      
+      <div className="container mx-auto px-4 space-y-16">
         <HeroSection onCtaClick={onCtaClick} />
         <FeatureShowcase />
         <DemoSection />
         <SocialProof />
         <BottomCTA onButtonClick={onCtaClick} />
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 };

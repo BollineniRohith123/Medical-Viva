@@ -29,7 +29,17 @@ export default defineConfig({
     },
   },
   server: {
-    // @ts-ignore
-    allowedHosts: true,
+    port: 5173,
+    host: 'localhost',
+    strictPort: true,
+    open: true,
+    https: false,
+    cors: true,
+  },
+  preview: {
+    port: 5173,
+    host: 'localhost',
+    strictPort: true,
+    https: false,
   }
 });
