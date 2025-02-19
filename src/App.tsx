@@ -1,92 +1,25 @@
-import React, { Suspense, lazy } from 'react';
-import { 
-  BrowserRouter as Router, 
-  Routes, 
-  Route 
-} from 'react-router-dom';
-import { motion } from 'framer-motion';
-
-// Lazy load components for better performance
-const Header = lazy(() => import('@/components/layout/Header'));
-const Home = lazy(() => import('@/pages/Home'));
-const Topics = lazy(() => import('@/pages/Topics'));
-const Quiz = lazy(() => import('@/pages/Quiz'));
-const Resources = lazy(() => import('@/pages/Resources'));
-const Results = lazy(() => import('@/pages/Results'));
-const Profile = lazy(() => import('@/pages/Profile'));
-const Loading = lazy(() => import('@/components/ui/Loading'));
-
-const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ duration: 0.3 }}
-      className="min-h-screen pt-16 px-4"
-    >
-      {children}
-    </motion.div>
-  );
-};
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './components/home';
+import MedicalTopics from './components/MedicalTopics';
+import QuizInterface from './components/QuizInterface';
+import ResultsDashboard from './components/ResultsDashboard';
+import UserProfile from './components/UserProfile';
+import StudyResources from './components/StudyResources';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Suspense fallback={<Loading />}>
-        <Header />
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <PageWrapper>
-                <Home />
-              </PageWrapper>
-            } 
-          />
-          <Route 
-            path="/topics" 
-            element={
-              <PageWrapper>
-                <Topics />
-              </PageWrapper>
-            } 
-          />
-          <Route 
-            path="/quiz" 
-            element={
-              <PageWrapper>
-                <Quiz />
-              </PageWrapper>
-            } 
-          />
-          <Route 
-            path="/resources" 
-            element={
-              <PageWrapper>
-                <Resources />
-              </PageWrapper>
-            } 
-          />
-          <Route 
-            path="/results" 
-            element={
-              <PageWrapper>
-                <Results />
-              </PageWrapper>
-            } 
-          />
-          <Route 
-            path="/profile" 
-            element={
-              <PageWrapper>
-                <Profile />
-              </PageWrapper>
-            } 
-          />
-        </Routes>
-      </Suspense>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="topics" element={<MedicalTopics />} />
+        <Route path="quiz" element={<QuizInterface />} />
+        <Route path="results" element={<ResultsDashboard />} />
+        <Route path="profile" element={<UserProfile />} />
+        <Route path="resources" element={<StudyResources />} />
+      </Route>
+    </Routes>
   );
 };
 
