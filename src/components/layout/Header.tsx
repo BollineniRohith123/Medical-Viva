@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { HomeIcon } from '@radix-ui/react-icons';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,12 +25,21 @@ const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const navItems = [
+    { to: "/", label: "Home", icon: <HomeIcon className="w-5 h-5" /> },
+    { to: "/topics", label: "Medical Topics" },
+    { to: "/quiz", label: "Quiz" },
+    { to: "/resources", label: "Study Resources" },
+    { to: "/results", label: "Results" },
+    { to: "/profile", label: "Profile" }
+  ];
+
   return (
     <header 
       className="
         fixed top-0 left-0 right-0 z-50 
         bg-white/90 shadow-md backdrop-blur-md
-        h-16 // Explicitly set height to 64px
+        h-16
       "
     >
       <div className="container mx-auto px-4 h-full flex justify-between items-center relative">
@@ -72,23 +82,21 @@ const Header: React.FC = () => {
           `}
         >
           <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6">
-            {[
-              { to: "/topics", label: "Medical Topics" },
-              { to: "/quiz", label: "Quiz" },
-              { to: "/resources", label: "Study Resources" },
-              { to: "/results", label: "Results" },
-              { to: "/profile", label: "Profile" }
-            ].map(({ to, label }) => (
+            {navItems.map(({ to, label, icon }) => (
               <Link 
                 key={to}
                 to={to} 
-                className="
-                  text-gray-700 hover:text-blue-600 
+                className={`
+                  flex items-center gap-2
                   transition-colors duration-300 
                   text-lg md:text-base
-                "
+                  ${location.pathname === to 
+                    ? 'text-blue-600 font-semibold' 
+                    : 'text-gray-700 hover:text-blue-600'}
+                `}
                 onClick={() => setIsMenuOpen(false)}
               >
+                {icon}
                 {label}
               </Link>
             ))}
