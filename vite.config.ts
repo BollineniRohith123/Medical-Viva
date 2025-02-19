@@ -17,9 +17,10 @@ export default defineConfig({
     entries: ["src/main.tsx", "src/tempobook/**/*"],
   },
   plugins: [
-    react(),
+    react({
+      plugins: conditionalPlugins,
+    }),
     tempo(),
-    ...conditionalPlugins.map(([name, options]) => require(name)(options)),
   ],
   resolve: {
     preserveSymlinks: true,
