@@ -6,6 +6,8 @@ import {
   useLocation
 } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import { Toaster } from '@/components/ui/toaster';
 
 // Lazy load components for better performance
 const Layout = lazy(() => import('./components/layout/Layout'));
@@ -61,63 +63,66 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Suspense fallback={<Loading />}>
-        <Layout />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <PageWrapper>
-                  <Home />
-                </PageWrapper>
-              } 
-            />
-            <Route 
-              path="/topics" 
-              element={
-                <PageWrapper>
-                  <MedicalTopics />
-                </PageWrapper>
-              } 
-            />
-            <Route 
-              path="/quiz" 
-              element={
-                <PageWrapper>
-                  <QuizInterface />
-                </PageWrapper>
-              } 
-            />
-            <Route 
-              path="/results" 
-              element={
-                <PageWrapper>
-                  <ResultsDashboard />
-                </PageWrapper>
-              } 
-            />
-            <Route 
-              path="/profile" 
-              element={
-                <PageWrapper>
-                  <UserProfile />
-                </PageWrapper>
-              } 
-            />
-            <Route 
-              path="/resources" 
-              element={
-                <PageWrapper>
-                  <StudyResources />
-                </PageWrapper>
-              } 
-            />
-          </Routes>
-        </AnimatePresence>
-      </Suspense>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <Suspense fallback={<Loading />}>
+          <Layout />
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route 
+                path="/" 
+                element={
+                  <PageWrapper>
+                    <Home />
+                  </PageWrapper>
+                } 
+              />
+              <Route 
+                path="/topics" 
+                element={
+                  <PageWrapper>
+                    <MedicalTopics />
+                  </PageWrapper>
+                } 
+              />
+              <Route 
+                path="/quiz" 
+                element={
+                  <PageWrapper>
+                    <QuizInterface />
+                  </PageWrapper>
+                } 
+              />
+              <Route 
+                path="/results" 
+                element={
+                  <PageWrapper>
+                    <ResultsDashboard />
+                  </PageWrapper>
+                } 
+              />
+              <Route 
+                path="/profile" 
+                element={
+                  <PageWrapper>
+                    <UserProfile />
+                  </PageWrapper>
+                } 
+              />
+              <Route 
+                path="/resources" 
+                element={
+                  <PageWrapper>
+                    <StudyResources />
+                  </PageWrapper>
+                } 
+              />
+            </Routes>
+          </AnimatePresence>
+          <Toaster />
+        </Suspense>
+      </Router>
+    </ErrorBoundary>
   );
 };
 
