@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AnimatePresence } from 'framer-motion';
 
 // Layouts
-import Header from '../components/layout/Header';
+import Header from './components/layout/Header';
 
 // Pages (Lazy Loaded)
-const Home = lazy(() => import('../pages/Home'));
-const Quiz = lazy(() => import('../pages/Quiz'));
-const Topics = lazy(() => import('../pages/Topics'));
-const StudyResources = lazy(() => import('../pages/StudyResources'));
+const Home = lazy(() => import('./pages/Home'));
+const Quiz = lazy(() => import('./pages/Quiz'));
+const Topics = lazy(() => import('./pages/Topics'));
+const StudyResources = lazy(() => import('./pages/StudyResources'));
 
 // Loading Component
 const Loader = () => (
