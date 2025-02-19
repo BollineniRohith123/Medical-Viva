@@ -1,30 +1,61 @@
-# React + TypeScript + Vite
+# Medical Viva Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Medical Viva Assistant is an interactive web application designed to help medical students study, practice, and track their learning progress.
 
-Currently, two official plugins are available:
+## Features
+- Medical Topics Browser
+- Interactive Quiz Interface
+- Performance Tracking Dashboard
+- Study Resources Repository
+- User Profile Management
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Shadcn UI
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
+- Node.js (v18+)
+- npm or yarn
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Installation
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/medical-viva-assistant.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install dependencies
+```bash
+cd medical-viva-assistant
+npm install
+```
+
+3. Run development server
+```bash
+npm run dev
+```
+
+## Deployment
+This project is configured for easy deployment on Vercel:
+
+1. Install Vercel CLI
+```bash
+npm install -g vercel
+```
+
+2. Deploy
+```bash
+vercel
+```
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+This project is open-source and available under the MIT License.

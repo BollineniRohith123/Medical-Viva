@@ -1,6 +1,6 @@
 import path from "path";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import { tempo } from "tempo-devtools/dist/vite";
 
 const conditionalPlugins: [string, Record<string, any>][] = [];
@@ -27,6 +27,17 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
   },
   server: {
     port: 5173,
